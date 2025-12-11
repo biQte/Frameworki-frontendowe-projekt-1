@@ -4,14 +4,14 @@ const path = require('path');
 const count = Number(process.argv[2]);
 let names = [];
 
-const srcPath = path.join(__dirname, 'src', 'module-data.js');
+const srcPath = path.join(__dirname, '..', 'src', 'data', 'module-data.js');
 
 if (fs.existsSync(srcPath)) {
   console.log("module-data.js already exists. Skipping generation.");
   process.exit(0);
 }
 
-fs.readFile('./data/names.txt', 'utf8', (err, data) => {
+fs.readFile(path.join(__dirname, 'names.txt'), 'utf8', (err, data) => {
   if (err) {
     console.error(err);
     return;

@@ -1,11 +1,13 @@
-import { useContext, useEffect } from 'react';
+
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 import { Button, Form, Alert } from 'react-bootstrap';
-import AppContext from '../data/AppContext';
+import { useData, useDispatch } from '../data/useAppHooks';
 
 function FormEdit() {
-  const { items, dispatch } = useContext(AppContext);
+  const items = useData();
+  const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
 

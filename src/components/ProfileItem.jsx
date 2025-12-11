@@ -1,12 +1,10 @@
-import { useContext } from 'react';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router';
 import RatingBar from './RatingBar';
-import AppContext from '../data/AppContext';
+import { useDispatch } from '../data/useAppHooks';
 
 function ProfileItem({ id, name, email, birthDate, phone, rating, check }) {
-  const context = useContext(AppContext);
-  const dispatch = context.dispatch;
+  const dispatch = useDispatch();
 
   return (
     <Card style={{ width: '18rem' }} className={`m-3 ${check ? 'border-primary' : ''}`}>

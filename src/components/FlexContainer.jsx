@@ -1,9 +1,7 @@
-import { useContext } from 'react';
-import AppContext from '../data/AppContext';
+import { useData } from '../data/useAppHooks';
 
 function FlexContainer({ element: Element }) {
-  const context = useContext(AppContext);
-  const items = context.items;
+  const items = useData();
 
   return (
     <div className="d-flex flex-wrap justify-content-center">

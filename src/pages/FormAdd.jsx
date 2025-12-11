@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import AppContext from '../data/AppContext';
+import { useDispatch } from '../data/useAppHooks';
 import { Button, Form, Alert } from 'react-bootstrap';
 
 function FormAdd() {
-  const { dispatch } = useContext(AppContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
 

@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from 'react-router';
-import { useReducer } from 'react';
 import RootLayout from './layouts/RootLayout';
 import Home from './pages/Home';
 import Lab1 from './pages/Lab1';
@@ -8,16 +7,15 @@ import Lab3Page from './pages/Lab3Page';
 import Lab4Page from './pages/Lab4Page';
 import FormAdd from './pages/FormAdd';
 import FormEdit from './pages/FormEdit';
+import Lab5Page from './pages/Lab5Page';
+import Lab5User from './pages/Lab5User';
+import Lab5Comments from './pages/Lab5Comments';
 import NotFound from './pages/NotFound';
-import { data } from './data/module-data';
-import AppReducer from './data/AppReducer';
-import AppContext from './data/AppContext';
+import AppProvider from './components/AppProvider';
 
 function App() {
-  const [state, dispatch] = useReducer(AppReducer, data);
-
   return (
-    <AppContext.Provider value={{ items: state, dispatch: dispatch }}>
+    <AppProvider>
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Navigate to="/home" replace />} />
@@ -28,10 +26,13 @@ function App() {
           <Route path="lab4" element={<Lab4Page />} />
           <Route path="lab4/add" element={<FormAdd />} />
           <Route path="lab4/edit/:id" element={<FormEdit />} />
+          <Route path="lab5" element={<Lab5Page />} />
+          <Route path="lab5/users/:id" element={<Lab5User />} />
+          <Route path="lab5/posts/:id/comments" element={<Lab5Comments />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </AppContext.Provider>
+    </AppProvider>
   );
 }
 
