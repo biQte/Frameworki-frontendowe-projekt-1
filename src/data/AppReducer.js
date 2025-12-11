@@ -16,6 +16,9 @@ export default function AppReducer(state, action) {
       });
     case "delete":
       return state.filter(item => item.id !== action.id);
+    case "add":
+      const newId = state.length > 0 ? Math.max(...state.map(i => i.id)) + 1 : 1;
+      return [...state, { id: newId, ...action.data }];
     case "edit":
       return state.map(item => {
         if (item.id === action.id) {

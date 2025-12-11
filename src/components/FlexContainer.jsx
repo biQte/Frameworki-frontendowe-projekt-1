@@ -1,13 +1,14 @@
-import { useReducer } from 'react';
-import AppReducer from '../data/AppReducer';
+import { useContext } from 'react';
+import AppContext from '../data/AppContext';
 
-function FlexContainer({ element: Element, data }) {
-  const [state, dispatch] = useReducer(AppReducer, data);
+function FlexContainer({ element: Element }) {
+  const context = useContext(AppContext);
+  const items = context.items;
 
   return (
     <div className="d-flex flex-wrap justify-content-center">
-      {state.map(item => (
-        <Element key={item.id} {...item} dispatch={dispatch} />
+      {items.map(item => (
+        <Element key={item.id} {...item} />
       ))}
     </div>
   );

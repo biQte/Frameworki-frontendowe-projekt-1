@@ -1,7 +1,13 @@
+import { useContext } from 'react';
 import { Button, Card, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router';
 import RatingBar from './RatingBar';
+import AppContext from '../data/AppContext';
 
-function ProfileItem({ id, name, email, birthDate, phone, rating, check, dispatch }) {
+function ProfileItem({ id, name, email, birthDate, phone, rating, check }) {
+  const context = useContext(AppContext);
+  const dispatch = context.dispatch;
+
   return (
     <Card style={{ width: '18rem' }} className={`m-3 ${check ? 'border-primary' : ''}`}>
       <Card.Body>
@@ -16,7 +22,9 @@ function ProfileItem({ id, name, email, birthDate, phone, rating, check, dispatc
           <RatingBar rate={rating || 0} />
         </div>
         <div className="d-flex justify-content-between flex-wrap gap-2">
-          <Button variant="outline-secondary" size="sm">Edit</Button>
+          <Link to={`/lab4/edit/${id}`}>
+            <Button variant="outline-secondary" size="sm">Edit</Button>
+          </Link>
           <Button
             variant={check ? "success" : "outline-success"}
             size="sm"
